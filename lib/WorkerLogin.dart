@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sih_main/HomePage.dart';
 import 'package:sih_main/MSEProfile.dart';
 
 class WorkerLogin extends StatefulWidget {
@@ -9,8 +12,106 @@ class WorkerLogin extends StatefulWidget {
 }
 
 class _WorkerLoginState extends State<WorkerLogin> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController userController = new TextEditingController();
+  final TextEditingController mseController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
+    final userField = TextFormField(
+      autofocus: false,
+      controller: userController,
+      keyboardType: TextInputType.text,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please enter your username");
+        }
+
+        if (!RegExp("^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]")
+            .hasMatch(value)) {
+          return ("Please enter a valid username");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        userController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      style: const TextStyle(
+        fontSize: 18.0,
+      ),
+      decoration: const InputDecoration(
+        icon: Icon(
+          Icons.person,
+          color: Colors.grey,
+        ),
+        border: InputBorder.none,
+        hintText: 'Enter Username',
+      ),
+    );
+
+    final empField = TextFormField(
+      autofocus: false,
+      controller: mseController,
+      keyboardType: TextInputType.text,
+      validator: (value) {
+        return null;
+      },
+      onSaved: (value) {
+        mseController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      style: const TextStyle(
+        fontSize: 18.0,
+      ),
+      decoration: const InputDecoration(
+        icon: Icon(
+          Icons.security,
+          color: Colors.grey,
+        ),
+        border: InputBorder.none,
+        hintText: 'Enter Employee ID',
+      ),
+    );
+
+    final passField = TextFormField(
+      autofocus: false,
+      controller: passwordController,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{6,}$');
+
+        if (value!.isEmpty) {
+          return ("Please enter your password");
+        }
+
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter valid password");
+        }
+
+        return null;
+      },
+      onSaved: (value) {
+        passwordController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+      style: const TextStyle(
+        fontSize: 18.0,
+      ),
+      decoration: const InputDecoration(
+        icon: Icon(
+          Icons.password,
+          color: Colors.grey,
+        ),
+        border: InputBorder.none,
+        hintText: 'Enter Password',
+      ),
+      obscureText: true,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Employee Login"),
@@ -77,19 +178,7 @@ class _WorkerLoginState extends State<WorkerLogin> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: TextFormField(
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                      ),
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.person,
-                          color: Colors.grey,
-                        ),
-                        border: InputBorder.none,
-                        hintText: 'Enter Username',
-                      ),
-                    ),
+                    child: userField,
                   ),
                 ),
                 const SizedBox(
@@ -106,19 +195,7 @@ class _WorkerLoginState extends State<WorkerLogin> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: TextFormField(
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                      ),
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.security,
-                          color: Colors.grey,
-                        ),
-                        border: InputBorder.none,
-                        hintText: 'Enter Employee ID',
-                      ),
-                    ),
+                    child: empField,
                   ),
                 ),
                 const SizedBox(
@@ -135,20 +212,7 @@ class _WorkerLoginState extends State<WorkerLogin> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: TextFormField(
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                      ),
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.password,
-                          color: Colors.grey,
-                        ),
-                        border: InputBorder.none,
-                        hintText: 'Enter Password',
-                      ),
-                      obscureText: true,
-                    ),
+                    child: passField,
                   ),
                 ),
                 const SizedBox(
@@ -162,12 +226,8 @@ class _WorkerLoginState extends State<WorkerLogin> {
                         borderRadius: BorderRadius.circular(20.0)),
                     child: FlatButton(
                       onPressed: () => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MSEProfile(),
-                          ),
-                        )
+                        Login(userController.text, mseController.text,
+                            passwordController.text)
                       },
                       child: const Center(
                         child: Text(
@@ -178,12 +238,33 @@ class _WorkerLoginState extends State<WorkerLogin> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void Login(String user, String emp, String pass) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: user, password: pass)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Login successful!"),
+                print(user + pass),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MSEProfile(),
+                  ),
+                )
+              })
+          .catchError((e) {
+        print(user + pass);
+        Fluttertoast.showToast(msg: user);
+      });
+    }
   }
 }

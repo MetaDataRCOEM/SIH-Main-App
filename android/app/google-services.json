@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "612864764640",
+    "project_id": "sihlogin-3398b",
+    "storage_bucket": "sihlogin-3398b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612864764640:android:03d08bd1ee2bd47971fe85",
+        "android_client_info": {
+          "package_name": "com.example.sih_main"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612864764640-vc8jlgebu8o2s3mgmkimbecqdk8arcf7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sih_main",
+            "certificate_hash": "ca3cfdb5dfe87f678e3168877c50caab3cce3cb7"
+          }
+        },
+        {
+          "client_id": "612864764640-53knbi95ppu2h9tatbtcovnr5478mvcb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQmzWRyhTd7dMR9kfiaJuMd95T2_kmOVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612864764640-53knbi95ppu2h9tatbtcovnr5478mvcb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

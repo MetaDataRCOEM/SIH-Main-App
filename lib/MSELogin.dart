@@ -9,8 +9,80 @@ class MSELogin extends StatefulWidget {
 }
 
 class _MSELoginState extends State<MSELogin> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController userController = new TextEditingController();
+  final TextEditingController mseController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final userField = TextFormField(
+      autofocus: false,
+      controller: userController,
+      keyboardType: TextInputType.text,
+      //validator: () => {},
+      onSaved: (value) {
+        userController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      style: const TextStyle(
+        fontSize: 18.0,
+      ),
+      decoration: const InputDecoration(
+        icon: Icon(
+          Icons.person,
+          color: Colors.grey,
+        ),
+        border: InputBorder.none,
+        hintText: 'Enter Username',
+      ),
+    );
+
+    final mseField = TextFormField(
+      autofocus: false,
+      controller: mseController,
+      keyboardType: TextInputType.text,
+      //validator: () => {},
+      onSaved: (value) {
+        mseController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      style: const TextStyle(
+        fontSize: 18.0,
+      ),
+      decoration: const InputDecoration(
+        icon: Icon(
+          Icons.security,
+          color: Colors.grey,
+        ),
+        border: InputBorder.none,
+        hintText: 'Enter MSE ID',
+      ),
+    );
+
+    final passField = TextFormField(
+      autofocus: false,
+      controller: passwordController,
+      //validator: () => {},
+      onSaved: (value) {
+        passwordController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+      style: const TextStyle(
+        fontSize: 18.0,
+      ),
+      decoration: const InputDecoration(
+        icon: Icon(
+          Icons.password,
+          color: Colors.grey,
+        ),
+        border: InputBorder.none,
+        hintText: 'Enter Password',
+      ),
+      obscureText: true,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("MSE Login"),
@@ -77,19 +149,7 @@ class _MSELoginState extends State<MSELogin> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: TextFormField(
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                      ),
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.person,
-                          color: Colors.grey,
-                        ),
-                        border: InputBorder.none,
-                        hintText: 'Enter Username',
-                      ),
-                    ),
+                    child: userField,
                   ),
                 ),
                 const SizedBox(
@@ -106,19 +166,7 @@ class _MSELoginState extends State<MSELogin> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: TextFormField(
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                      ),
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.security,
-                          color: Colors.grey,
-                        ),
-                        border: InputBorder.none,
-                        hintText: 'Enter MSE ID',
-                      ),
-                    ),
+                    child: mseField,
                   ),
                 ),
                 const SizedBox(
@@ -135,20 +183,7 @@ class _MSELoginState extends State<MSELogin> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: TextFormField(
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                      ),
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.password,
-                          color: Colors.grey,
-                        ),
-                        border: InputBorder.none,
-                        hintText: 'Enter Password',
-                      ),
-                      obscureText: true,
-                    ),
+                    child: passField,
                   ),
                 ),
                 const SizedBox(
