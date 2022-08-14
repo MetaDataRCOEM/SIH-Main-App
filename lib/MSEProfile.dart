@@ -13,7 +13,7 @@ class _MSEProfileState extends State<MSEProfile> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("MSE Profile"),
-        // backgroundColor: Colors.orangeAccent,
+        backgroundColor: Colors.orangeAccent,
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
@@ -41,25 +41,40 @@ class _MSEProfileState extends State<MSEProfile> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
+                    children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Text(
-                          "Name",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: const [
+                            Text(
+                              "Hemraj Raut",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Poppins',
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15.0,
+                            ),
+                            Text(
+                              "MSE No. : xxxxxxxx",
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: CircleAvatar(
-                          backgroundColor: Colors.grey,
                           radius: 50.0,
-                          child: Icon(
-                            Icons.person_outline,
-                            color: Colors.black,
+                          backgroundColor: Colors.grey,
+                          foregroundImage: AssetImage(
+                            "assets/user.jpg",
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
