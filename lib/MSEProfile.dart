@@ -186,7 +186,7 @@ class _MSEProfileState extends State<MSEProfile> {
               const SizedBox(
                 height: 20.0,
               ),
-              Padding(
+              /** Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
                   decoration: BoxDecoration(
@@ -281,9 +281,63 @@ class _MSEProfileState extends State<MSEProfile> {
                     ),
                   ),
                 ),
-              ),
+              ), */
               const SizedBox(
-                height: 20.0,
+                height: 40.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    RaisedButton(
+                      onPressed: () => {print("Worker clicked")},
+                      color: Colors.white70,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "assets/worker.png",
+                            height: 75.0,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          const Text(
+                            "Workers",
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    RaisedButton(
+                      color: Colors.white70,
+                      onPressed: () => {print("Attendance clicked")},
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "assets/attendance.png",
+                            height: 75.0,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          const Text(
+                            "Attendance",
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
