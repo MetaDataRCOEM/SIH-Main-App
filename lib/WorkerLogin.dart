@@ -29,155 +29,158 @@ class _WorkerLoginState extends State<WorkerLogin> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Image.asset(
-                  'assets/mnrega.png',
-                  height: 150.0,
-                ),
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              const Text(
-                "MNREGA Login",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "Login with your credentials",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-              const SizedBox(
-                height: 90,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25.0,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: TextFormField(
-                    style: const TextStyle(
-                      fontSize: 18.0,
+                  child: Image.asset(
+                    'assets/mnrega.png',
+                    height: 150.0,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30.0,
+                ),
+                const Text(
+                  "MNREGA Login",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Login with your credentials",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 90,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25.0,
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    decoration: const InputDecoration(
-                      icon: Icon(
-                        Icons.person,
-                        color: Colors.grey,
+                    child: TextFormField(
+                      style: const TextStyle(
+                        fontSize: 18.0,
                       ),
-                      border: InputBorder.none,
-                      hintText: 'Enter Username',
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25.0,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: TextFormField(
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                    ),
-                    decoration: const InputDecoration(
-                      icon: Icon(
-                        Icons.security,
-                        color: Colors.grey,
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Enter Employee ID',
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25.0,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: TextFormField(
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                    ),
-                    decoration: const InputDecoration(
-                      icon: Icon(
-                        Icons.password,
-                        color: Colors.grey,
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Enter Password',
-                    ),
-                    obscureText: true,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 40.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: FlatButton(
-                    onPressed: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MSEProfile(),
+                      decoration: const InputDecoration(
+                        icon: Icon(
+                          Icons.person,
+                          color: Colors.grey,
                         ),
-                      )
-                    },
-                    child: const Center(
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                        border: InputBorder.none,
+                        hintText: 'Enter Username',
                       ),
                     ),
                   ),
                 ),
-              )
-            ],
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25.0,
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: TextFormField(
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                      ),
+                      decoration: const InputDecoration(
+                        icon: Icon(
+                          Icons.security,
+                          color: Colors.grey,
+                        ),
+                        border: InputBorder.none,
+                        hintText: 'Enter Employee ID',
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25.0,
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: TextFormField(
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                      ),
+                      decoration: const InputDecoration(
+                        icon: Icon(
+                          Icons.password,
+                          color: Colors.grey,
+                        ),
+                        border: InputBorder.none,
+                        hintText: 'Enter Password',
+                      ),
+                      obscureText: true,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 40.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: FlatButton(
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MSEProfile(),
+                          ),
+                        )
+                      },
+                      child: const Center(
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
