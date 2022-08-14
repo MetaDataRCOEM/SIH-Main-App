@@ -8,6 +8,20 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("MNREGA"),
+        backgroundColor: Colors.orangeAccent,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.inbox),
+            tooltip: 'Show Snack',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('No messages currently')));
+            },
+          ),
+        ],
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
@@ -19,7 +33,7 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Image.asset(
-                  'images/mgn-logo.png',
+                  'assets/mnrega.png',
                   height: 150.0,
                 ),
               ),
@@ -30,6 +44,7 @@ class HomePage extends StatelessWidget {
                 "MNREGA",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins',
                   fontSize: 24,
                 ),
               ),
@@ -37,9 +52,10 @@ class HomePage extends StatelessWidget {
                 height: 10,
               ),
               const Text(
-                "Choose Your Role",
+                "Login as",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins',
                   fontSize: 20,
                 ),
               ),
@@ -50,16 +66,17 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   RaisedButton(
-                    color: Colors.blueAccent,
+                    color: Colors.orangeAccent,
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => MSELogin()));
                     },
                     child: const Text(
-                      "MES Officer",
+                      "MSE Officer",
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -68,7 +85,7 @@ class HomePage extends StatelessWidget {
                     width: 50.0,
                   ),
                   RaisedButton(
-                    color: Colors.blueAccent,
+                    color: Colors.orangeAccent,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -82,6 +99,7 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
