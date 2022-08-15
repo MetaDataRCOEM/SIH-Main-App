@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sih_main/EmpImg.dart';
 import 'package:sih_main/MSEProfile.dart';
 
 class WorkerLogin extends StatefulWidget {
@@ -165,7 +166,7 @@ class _WorkerLoginState extends State<WorkerLogin> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MSEProfile(),
+                            builder: (context) => const EmpImgPage(),
                           ),
                         )
                       },
@@ -173,7 +174,9 @@ class _WorkerLoginState extends State<WorkerLogin> {
                         child: Text(
                           'Register',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
