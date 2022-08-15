@@ -9,6 +9,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        actions: const [
+          Text("Test"),
+          Icon(Icons.cabin),
+        ],
+      ),
+    );
   }
 }
