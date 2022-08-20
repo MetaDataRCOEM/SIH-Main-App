@@ -68,8 +68,10 @@ class HomePage extends StatelessWidget {
                   RaisedButton(
                     color: Colors.orangeAccent,
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MSELogin()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MSELogin()));
                     },
                     child: const Text(
                       "MSE Officer",

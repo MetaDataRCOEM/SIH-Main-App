@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sih_main/MSEProfile.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import '../services/authserve.dart';
 
 class MSELogin extends StatefulWidget {
   const MSELogin({Key? key}) : super(key: key);
@@ -9,6 +12,8 @@ class MSELogin extends StatefulWidget {
 }
 
 class _MSELoginState extends State<MSELogin> {
+  var username, ID, pass, token;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,6 +86,9 @@ class _MSELoginState extends State<MSELogin> {
                       style: const TextStyle(
                         fontSize: 18.0,
                       ),
+                      onChanged: (value) {
+                        username = value;
+                      },
                       decoration: const InputDecoration(
                         icon: Icon(
                           Icons.person,
@@ -110,6 +118,9 @@ class _MSELoginState extends State<MSELogin> {
                       style: const TextStyle(
                         fontSize: 18.0,
                       ),
+                      onChanged: (value) {
+                        ID = value;
+                      },
                       decoration: const InputDecoration(
                         icon: Icon(
                           Icons.security,
@@ -139,6 +150,9 @@ class _MSELoginState extends State<MSELogin> {
                       style: const TextStyle(
                         fontSize: 18.0,
                       ),
+                      onChanged: (value) {
+                        pass = value;
+                      },
                       decoration: const InputDecoration(
                         icon: Icon(
                           Icons.password,
@@ -154,30 +168,85 @@ class _MSELoginState extends State<MSELogin> {
                 const SizedBox(
                   height: 40.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.orange,
-                        borderRadius: BorderRadius.circular(20.0)),
-                    child: FlatButton(
-                      onPressed: () => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MSEProfile(),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20.0)),
+                        child: FlatButton(
+                          onPressed: () {
+                            AuthService().auth(username, ID, pass).then(
+                              (value) {
+                                if (value.data['success']) {
+                                  token = value.data['token'];
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MSEProfile()));
+                                } else {
+                                  Fluttertoast.showToast(
+                                      msg: value.data['message'],
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                }
+                              },
+                            );
+                          },
+                          child: const Center(
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        )
-                      },
-                      child: const Center(
-                        child: Text(
-                          'Register',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
-                  ),
+                    // const SizedBox(
+                    //   height: 10.0,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //         color: Colors.orange,
+                    //         borderRadius: BorderRadius.circular(20.0)),
+                    //     child: FlatButton(
+                    //       onPressed: () {
+                    //         AuthService().getInfo(token).then(
+                    //           (value) {
+                    //             Fluttertoast.showToast(
+                    //               msg: value.data['msg'],
+                    //               toastLength: Toast.LENGTH_SHORT,
+                    //               gravity: ToastGravity.BOTTOM,
+                    //               backgroundColor: Colors.yellowAccent,
+                    //               textColor: Colors.black,
+                    //               fontSize: 16.0,
+                    //             );
+                    //           },
+                    //         );
+                    //       },
+                    //       child: const Center(
+                    //         child: Text(
+                    //           'Get Info',
+                    //           style: TextStyle(
+                    //               color: Colors.white,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 )
               ],
             ),
