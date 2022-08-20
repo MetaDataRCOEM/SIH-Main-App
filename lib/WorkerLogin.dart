@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sih_main/EmpImg.dart';
 import 'package:sih_main/MSEProfile.dart';
+import 'package:sih_main/services/authserve.dart';
 
 class WorkerLogin extends StatefulWidget {
   const WorkerLogin({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class WorkerLogin extends StatefulWidget {
 }
 
 class _WorkerLoginState extends State<WorkerLogin> {
+  var username, ID, pass, token;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,11 +166,26 @@ class _WorkerLoginState extends State<WorkerLogin> {
                         borderRadius: BorderRadius.circular(20.0)),
                     child: FlatButton(
                       onPressed: () => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const EmpImgPage(),
-                          ),
+                        AuthService().auth2(username, ID, pass).then(
+                          (value) {
+                            if (value.data['success']) {
+                              token = value.data['token'];
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EmpImgPage()));
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: value.data['message'],
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                            }
+                          },
                         )
                       },
                       child: const Center(
